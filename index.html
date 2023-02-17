@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Нет интернета</title>
+    </head>
+    <body>
+        <div class="navigation">
+            <a href="#installation">Как установить</a>
+            <a class="current" href="#inst">Как установить</a>
+        </div>
+        <div class="content"></div>
+        <script src="content.js"></script>
+    </body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+        body {
+            background-color: rgba(0, 159, 170, 0.178);
+        }
+        .app {
+        }
+
+        .navigation {
+            height: 100vh;
+            width: 500px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background-color: rgb(241, 241, 241);
+            display: flex;
+            flex-direction: column;
+            padding: 5px 20px;
+        }
+        .navigation a {
+            font-size: 30px;
+            color: rgb(66, 66, 66);
+        }
+        .navigation a:not(:last-child) {
+            margin-bottom: 10px;
+        }
+        .navigation a.current {
+            color: rgb(71, 71, 247);
+            position: relative;
+        }
+        .navigation a.current::after {
+            content: "<---";
+            display: block;
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            /* width: 20px; */
+        }
+    </style>
+</html>
