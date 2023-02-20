@@ -5,13 +5,19 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Нет интернета</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+            rel="stylesheet"
+        />
     </head>
     <body>
         <div class="navigation">
-            <a href="#installation">Как установить</a>
-            <a class="current" href="#inst">Как установить</a>
+            <a href="#install">Как установить</a>
+            <a href="#launch">Как запустить</a>
         </div>
-        <div class="content"></div>
+        <div id="content" class="content"></div>
         <script src="content.js"></script>
     </body>
     <style>
@@ -19,6 +25,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: Roboto;
         }
         html,
         body {
@@ -26,41 +33,84 @@
             width: 100%;
         }
         body {
-            background-color: rgba(0, 159, 170, 0.178);
+            background-color: rgba(181, 225, 228, 0.178);
         }
-        .app {
+        h1 {
+            font-size: 35px;
+            margin-bottom: 20px;
         }
-
+        p {
+            line-height: 150%;
+            font-size: 20px;
+        }
+        p:not(:last-child) {
+            margin-bottom: 7px;
+        }
+        .content {
+            height: 100%;
+            width: 100%;
+            padding: 20px;
+            padding-left: 540px;
+        }
         .navigation {
             height: 100vh;
             width: 500px;
             position: fixed;
             left: 0;
             top: 0;
-            background-color: rgb(241, 241, 241);
+            background-color: rgb(255, 255, 255);
             display: flex;
             flex-direction: column;
-            padding: 5px 20px;
+            padding: 20px;
+            border-radius: 0 20px 20px 0;
+            box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.24);
         }
         .navigation a {
             font-size: 30px;
+            block-size: auto;
             color: rgb(66, 66, 66);
+            border-radius: 5px;
+            padding: 4px;
+            transition: background-color 0.1s ease;
+        }
+        .navigation a:hover {
+            background-color: rgba(196, 228, 255, 0.521);
         }
         .navigation a:not(:last-child) {
             margin-bottom: 10px;
         }
         .navigation a.current {
-            color: rgb(71, 71, 247);
+            color: rgb(168, 225, 252);
             position: relative;
+            /* text-align: center; */
         }
         .navigation a.current::after {
-            content: "<---";
-            display: block;
+            content: "•";
+            font-size: 150%;
+            display: flex;
+            vertical-align: middle;
             position: absolute;
-            right: 0;
+            right: 10px;
             top: 0;
             height: 100%;
+            align-items: center;
             /* width: 20px; */
+        }
+        .block:not(:last-child) {
+            margin-bottom: 30px;
+            border-bottom: 1px solid green;
+            padding-bottom: 10px;
+        }
+
+        code {
+            padding: 5px;
+            color: rgb(238, 204, 165);
+            border-radius: 10px;
+            font-weight: bold;
+            background-color: rgb(31, 23, 49);
+            cursor: pointer;
+            margin: 5px 0;
+            letter-spacing: 1px;
         }
     </style>
 </html>
