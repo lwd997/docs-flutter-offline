@@ -8,7 +8,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Roboto&family=Source+Code+Pro:wght@500&display=swap"
             rel="stylesheet"
         />
     </head>
@@ -16,6 +16,12 @@
         <div class="navigation">
             <a href="#install">Как установить</a>
             <a href="#launch">Как запустить</a>
+            <a href="#emulator">Эмуляторы</a>
+
+            <label for="copy" class="option">
+                <input type="checkbox" name="copy" id="copy" />
+                <span>Копировать кликом содержимое блоков с кодом</span>
+            </label>
         </div>
         <div id="content" class="content"></div>
         <script src="content.js"></script>
@@ -101,16 +107,44 @@
             border-bottom: 1px solid green;
             padding-bottom: 10px;
         }
-
+        var {
+            font-style: normal;
+            color: rgb(245, 126, 126);
+        }
         code {
+            font-family: Source Code Pro;
             padding: 5px;
             color: rgb(238, 204, 165);
             border-radius: 10px;
             font-weight: bold;
+            display: inline-block;
             background-color: rgb(31, 23, 49);
-            cursor: pointer;
+            transition: background, color, 0.1s ease;
             margin: 5px 0;
-            letter-spacing: 1px;
+            /* cursor :; */
+            /* letter-spacing: 1px; */
+        }
+        .option {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+        }
+        .option span {
+            display: block;
+        }
+        .option input[type="checkbox"] {
+            height: 20px;
+            cursor: pointer;
+            width: 20px;
+            margin-right: 10px;
+        }
+        blockquote {
+            border-left: 5px solid rgb(168, 238, 255);
+            background-color: rgb(255, 255, 255);
+            padding: 5px 10px;
+            color: rgb(114, 114, 114);
+            border-radius: 5px 10px 10px 5px;
         }
     </style>
 </html>
