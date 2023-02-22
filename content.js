@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var links = document.querySelectorAll(".navigation a");
     var allowCopyInput = document.getElementById("copy");
     var hrefList = [];
+    var copyingAnimation = false;
     for (var i = 0; i < links.length; i++) {
         hrefList.push(links[i].href.split("#")[1]);
     }
@@ -77,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         !code exec "$JAVACMD" "\${JVM_OPTS[@]}" -classpath "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$@" code! (последняя строка)~br
                         на ~br
                         !code exec "$JAVACMD" "\${JVM_OPTS[@]}" -classpath "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$@" --offline code! ~br
-                        !code cd projecte && flutter run code!
+                        !code cd project && flutter run code!
                     `,
                 },
             ],
@@ -177,8 +178,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     window.copyText = function (node) {
-        if (!allowCopyInput.checked) return;
+        if (!allowCopyInput.checked || copyingAnimation) return;
         try {
+            copyingAnimation = true;
             navigator.clipboard.writeText(node.innerText);
             node.style.background = "rgb(90, 72, 131)";
 
@@ -186,16 +188,17 @@ document.addEventListener("DOMContentLoaded", function () {
             var restore = node.innerHTML;
 
             node.innerHTML = `
-            <div style="width:${node.offsetWidth - 10}px;height:${
-                node.offsetHeight - 10
-            }px;">
-                <div style="width:100%;height:100%;display:flex;justify-content:center;align-items:center;">Скопировано</div>
-            </div>`;
+                <div style="width:${node.offsetWidth - 10}px;height:
+                ${node.offsetHeight - 10}px;">
+                    <div style="width:100%;height:100%;display:flex;justify-content:center;align-items:center;">Скопировано</div>
+                </div>
+            `;
 
             setTimeout(() => {
                 node.style.background = "rgb(31, 23, 49)";
                 node.style.color = "rgb(238, 204, 165)";
                 node.innerHTML = restore;
+                copyingAnimation = false;
             }, 250);
         } catch (error) {
             alert(error);
