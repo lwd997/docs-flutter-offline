@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
      * !link url link! - ссылка
      * !code text code! - консольная команда
      * !note text note! - примечание
+     * !b text b! - жирный текст
      */
 
     if (localStorage.getItem("allowCopy")) {
@@ -50,17 +51,24 @@ document.addEventListener("DOMContentLoaded", function () {
                         android-33 w/ playstore !link https://dl.google.com/android/repository/sys-img/google_apis_playstore/x86_64-33_r06.zip link! ~br
                         android-28 w/ playstore !link https://dl.google.com/android/repository/sys-img/google_apis_playstore/x86_64-28_r08.zip link! ~br
                         android-25 !link https://dl.google.com/android/repository/sys-img/android/x86_64-25_r01.zip link! ~br
-                        Кэши для оффлайн сборки андроид !link https://github.com/lwd997/flutter_deps-from-source/releases/download/updated_caches/caches.zip link! 
-                        
+                        Кэши для оффлайн сборки андроид !link https://github.com/lwd997/flutter_deps-from-source/releases/download/updated_caches/caches.zip link! ~br
+                        <br/>
+                        !b Может понадобиться для билдов приложений использующих  C,С++: b! ~br
+                        Clang !link https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.6/clang+llvm-15.0.6-x86_64-linux-gnu-ubuntu-18.04.tar.xz link! ~br
+                        ninja !link https://github.com/ninja-build/ninja/releases/download/v1.11.1/ninja-linux.zip link! ~br
+                        CMake !link https://github.com/Kitware/CMake/releases/download/v3.25.1/cmake-3.25.1-linux-x86_64.tar.gz link! ~br
+                        PKG-Config !link https://pkgconfig.freedesktop.org/releases/pkg-config-0.29.tar.gz link! 
                     `,
                 },
 
                 {
-                    heading: "Распаковать установить",
+                    heading: "Установить",
                     content: `
-                        111: ~br
-                        Flutter !link https://localhost link! ~br
-                        !code sdkmanager "system-images;android-25;default;arm64-v8a" code!
+                        Распаковать все скачанное, кроме gradle - его не распаковывать, в папку flutter-src (стандартное) ~br
+                        !code node ./prebuild.js code! ~br
+                        !code bash ./runall.sh code! ~br
+                        В build-gtk.js отключена сборка самих библиотек gtk. Собираются только ninja, cmake, clang и pkg-config  ~br
+                        Если их архивы не скачивались, то можно закомментировать !code node "$PWD/build-gtk.js" code! в runall.sh
                         
                     `,
                 },
@@ -154,6 +162,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 .replaceAll("code!", "</code>")
                 .replaceAll("!note", "<blockquote>")
                 .replaceAll("note!", "</blockquote>")
+                .replaceAll("!b", "<b>")
+                .replaceAll("b!", "</b>")
                 .replace(/(?<=!link)(.*)(?=link!)/g, '<a href="$1">$1</a>')
                 .replaceAll("!link", "")
                 .replaceAll("link!", "")
